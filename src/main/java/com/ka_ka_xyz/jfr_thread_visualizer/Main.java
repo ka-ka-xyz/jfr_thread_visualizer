@@ -7,9 +7,13 @@ import java.util.Date;
 import java.util.Map;
 
 import com.ka_ka_xyz.jfr_thread_visualizer.html.ReportHtmlGeneretor;
+import com.ka_ka_xyz.jfr_thread_visualizer.reader.AbsJfrReader;
+import com.ka_ka_xyz.jfr_thread_visualizer.reader.api.JfrApiReader;
 import com.ka_ka_xyz.jfr_thread_visualizer.reader.jdk8.JfrReader;
 import com.ka_ka_xyz.jfr_thread_visualizer.threaddump.ThreadDumpParseException;
-import com.ka_ka_xyz.jfr_thread_visualizer.threaddump.ThreadDumpParser;
+import com.ka_ka_xyz.jfr_thread_visualizer.threaddump.api.ApiThredDumpParser;
+import com.ka_ka_xyz.jfr_thread_visualizer.threaddump.jdk8.ThreadDumpParser;
+import com.ka_ka_xyz.jfr_thread_visualizer.threaddump.AbsThreadDumpParser;
 import com.ka_ka_xyz.jfr_thread_visualizer.threaddump.ThreadDumpEntry;
 
 import freemarker.template.TemplateException;
@@ -36,9 +40,27 @@ public class Main {
         System.out.println("outdir:" + outDir.getAbsolutePath());
 
         File outFile = new File(outDir, THREAD_TABLE_HTML_OUTFILE);
-        JfrReader jtdu = new JfrReader();
-        Path tmp = jtdu.extractThreadDumpAsTemp(file);
-        ThreadDumpParser parser = new ThreadDumpParser(tmp);
+        AbsJfrReader jtdu = new JfrApiReader();
+        Path tmp = null;
+        AbsThreadDumpParser parser = null;
+        try {
+            tmp = jtdu.read(file);
+            parser = new ApiThredDumpParser(tmp);
+        } catch(IOException ioe) {
+            jtdu = new JfrReader();
+            try {
+                tmp = jtdu.read(file);
+                parser = new ThreadDumpParser(tmp);
+            } catch(Throwable t) {
+                t.printStackTrace();
+            }
+        }
+        
+        if (tmp == null || parser == null) {
+            System.err.println("Failed to read" + file);
+            System.exit(1);
+        }
+
         Map<String, Map<Date, ThreadDumpEntry>> entries = parser.parse();
         ReportHtmlGeneretor gen = new ReportHtmlGeneretor(entries);
         gen.write(outFile);

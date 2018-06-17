@@ -18,8 +18,13 @@ if exist "%JAVA_HOME%\jre\lib\jfr.jar" (
 )
 
 set CLASSPATH=lib\*;%JFR_JAR%
-echo "%JAVA_HOME%\bin\java" -cp "%CLASSPATH%" com.ka_ka_xyz.jfr_thread_visualizer.Main %1 %2
-"%JAVA_HOME%\bin\java" -cp "%CLASSPATH%" com.ka_ka_xyz.jfr_thread_visualizer.Main %1 %2
+
+echo ==========================
+echo This tool use classes in jdk.jfr package. These classes requires a commercial license for use in production.
+echo ref. https://docs.oracle.com/javase/9/docs/api/jdk/jfr/package-summary.html
+echo ==========================
+echo "%JAVA_HOME%\bin\java" -XX:+UnlockCommercialFeatures -cp "%CLASSPATH%" com.ka_ka_xyz.jfr_thread_visualizer.Main %1 %2
+"%JAVA_HOME%\bin\java" -XX:+UnlockCommercialFeatures -cp "%CLASSPATH%" com.ka_ka_xyz.jfr_thread_visualizer.Main %1 %2
 goto end
 
 :noJavaHome

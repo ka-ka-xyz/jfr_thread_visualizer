@@ -1,4 +1,4 @@
-# About jfr_thread_visualizer
+# About jfr_thread_visualizer v0.0.2
 
 jfr_thread_visualizer is a tool for outputting time series thread dump information recorded in jfr file into html format.
 It is an experimental tool and I does not guarantee the quality.
@@ -6,9 +6,10 @@ It is an experimental tool and I does not guarantee the quality.
 ![Visualized Threads](readme_resources/visualized_threads.PNG "Visualized Threads")
 
 ## Requirement
-- JDK 8 or JDK9
-- In the environment of JDK 9 or higher, it is necessary to specify the path of JDK 8 with the environment variable `JAVA8_HOME`.
-- Jfr file generated from java9 or higher process is not supported.
+- JDK 9 or higher
+- It is necessary to specify the path of JDK 8 with the environment variable `JAVA8_HOME` when you refer jfr file which generated from java8 process.
+- This tool depends on commercial feature of oracle JDK. Requires oracle commercial license in production.
+    - https://docs.oracle.com/javase/9/docs/api/jdk/jfr/package-summary.html
 
 ## How To Execute
 ```

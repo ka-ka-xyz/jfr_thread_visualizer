@@ -1,13 +1,14 @@
-# jfr_thread_visualizerについて
+# jfr_thread_visualizer v0.0.2について
 jfrファイルに記録された時系列スレッドダンプ情報をhtml形式で出力するためのツールです。
 実験的ツールであり、動作の品質は保証しません。
 
 ![Visualized Threads](readme_resources/visualized_threads.PNG "Visualized Threads")
 
 ## 動作要件
-- JDK8、JDK9
-- JDK9以上の環境では、JDK8のパスを環境変数`JAVA8_HOME`で指定する必要があります
-- JDK9以降で実行中のjavaプロセスから取得したjfrファイルはサポートしません
+- JDK9 以上
+- Java8プロセスから取得したJFRファイルを参照する場合、JDK8のパスを環境変数`JAVA8_HOME`で指定する必要があります
+- Oracleの商用機能に依存しているため、本番での使用には商用ライセンスが必要です
+    - https://docs.oracle.com/javase/jp/9/docs/api/jdk/jfr/package-summary.html
 
 
 ## 実行方法
