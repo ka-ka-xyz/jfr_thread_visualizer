@@ -5,8 +5,9 @@ jfrファイルに記録された時系列スレッドダンプ情報をhtml形�
 ![Visualized Threads](readme_resources/visualized_threads.PNG "Visualized Threads")
 
 ## 動作要件
-- JDK8以上
+- JDK8、JDK9
 - JDK9以上の環境では、JDK8のパスを環境変数`JAVA8_HOME`で指定する必要があります
+- JDK10で実行中のjavaプロセスから取得したjfrファイルはサポートしません
 
 
 ## 実行方法
