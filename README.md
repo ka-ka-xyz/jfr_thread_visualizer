@@ -8,7 +8,7 @@ It is an experimental tool and I does not guarantee the quality.
 ## Requirement
 - JDK 8 or JDK9
 - In the environment of JDK 9 or higher, it is necessary to specify the path of JDK 8 with the environment variable `JAVA8_HOME`.
-- Jfr file generated from java10 process is not supported.
+- Jfr file generated from java9 or higher process is not supported.
 
 ## How To Execute
 ```
