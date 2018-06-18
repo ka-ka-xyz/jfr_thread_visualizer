@@ -12,6 +12,9 @@ jfrファイルに記録された時系列スレッドダンプ情報をhtml形�
 
 
 ## 実行方法
+1. bin/setenv.bat (またはbin/setenv.sh)を編集し、Commercial Feature フラグを有効化してください
+2. bin/jfr_thread_visualizer.bat (またはbin/jfr_thread_visualizer.sh)を実行します
+
 ```
 bin\jfr_thread_visualizer.bat ${jfrファイル}
 ```

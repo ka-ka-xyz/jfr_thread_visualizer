@@ -12,11 +12,14 @@ It is an experimental tool and I does not guarantee the quality.
     - https://docs.oracle.com/javase/9/docs/api/jdk/jfr/package-summary.html
 
 ## How To Execute
+1. Edit bin/setenv.bat (or bin/setenv.sh) and enable Commercial Feature flag
+2. Execute bin/jfr_thread_visualizer.bat (or bin/jfr_thread_visualizer.sh)
+
 ```
 bin\jfr_thread_visualizer.bat ${jfr_file}
 ```
 
-例
+Example
 ```
 jfr_thread_visualizer.bat C:\sample\sample/jfr
 ```
