@@ -2,6 +2,10 @@
 pushd %~dp0
 pushd ..\
 
+if exist "bin\setenv.bat" (
+  call bin\setenv.bat
+)
+
 if "%JAVA_HOME%" == "" goto noJavaHome
 if not exist "%JAVA_HOME%\bin\java.exe" goto noJavaHome
 
@@ -23,8 +27,8 @@ echo ==========================
 echo This tool use classes in jdk.jfr package. These classes requires a commercial license for use in production.
 echo ref. https://docs.oracle.com/javase/9/docs/api/jdk/jfr/package-summary.html
 echo ==========================
-echo "%JAVA_HOME%\bin\java" -XX:+UnlockCommercialFeatures -cp "%CLASSPATH%" com.ka_ka_xyz.jfr_thread_visualizer.Main %1 %2
-"%JAVA_HOME%\bin\java" -XX:+UnlockCommercialFeatures -cp "%CLASSPATH%" com.ka_ka_xyz.jfr_thread_visualizer.Main %1 %2
+echo "%JAVA_HOME%\bin\java" %JAVA_OPTS% -cp "%CLASSPATH%" com.ka_ka_xyz.jfr_thread_visualizer.Main %1 %2
+"%JAVA_HOME%\bin\java" %JAVA_OPTS% -cp "%CLASSPATH%" com.ka_ka_xyz.jfr_thread_visualizer.Main %1 %2
 goto end
 
 :noJavaHome

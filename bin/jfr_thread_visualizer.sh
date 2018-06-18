@@ -2,6 +2,12 @@
 pushd `dirname $0`
 pushd ../
 
+
+if [ -r "bin/setenv.sh" ]; then
+  . "bin/setenv.sh"
+fi
+
+
 if [ -z "$JAVA_HOME" ]; then
     echo "the JAVA_HOME environment variable is NOT defined"
     exit 1
@@ -28,7 +34,7 @@ echo "=========================="
 echo "This tool use classes in jdk.jfr package. These classes requires a commercial license for use in production."
 echo "ref. https://docs.oracle.com/javase/9/docs/api/jdk/jfr/package-summary.html "
 echo "=========================="
-echo "$JAVA_HOME/bin/java -XX:+UnlockCommercialFeatures -cp $CLASSPATH com.ka_ka_xyz.jfr_thread_visualizer.Main $1 $2"
-$JAVA_HOME/bin/java -XX:+UnlockCommercialFeatures -cp $CLASSPATH com.ka_ka_xyz.jfr_thread_visualizer.Main $1 $2
+echo "$JAVA_HOME/bin/java $JAVA_OPTS -cp $CLASSPATH com.ka_ka_xyz.jfr_thread_visualizer.Main $1 $2"
+$JAVA_HOME/bin/java $JAVA_OPTS -cp $CLASSPATH com.ka_ka_xyz.jfr_thread_visualizer.Main $1 $2
 popd
 popd
